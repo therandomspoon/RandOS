@@ -1,7 +1,7 @@
 org 0x7C00
 
 section .bss
-    buffer resb 100 ; Buffer to store user input
+    buffer resb 100
     buffer_size equ 100
 
 section .text
@@ -9,7 +9,7 @@ start:
     mov ax, 0x0000
     mov ss, ax
     mov sp, 0xFFFF
-    mov ah, 0x0E ; BIOS teletype function
+    mov ah, 0x0E
     mov al, 'R'
     int 0x10
     mov al, 'a'
@@ -35,10 +35,10 @@ start:
     mov al, '1'
     int 0x10
     mov ah, 0x0E
-    mov al, 0x0A ; Newline character
+    mov al, 0x0A
     int 0x10
     call clear_screen_with_delay
-    mov ah, 0x0E ; BIOS teletype function
+    mov ah, 0x0E
     mov al, 'K'
     int 0x10
     mov al, 'e'
@@ -52,7 +52,7 @@ start:
     mov al, 'l'
     int 0x10
     mov ah, 0x0E
-    mov al, 0x0A ; Newline character
+    mov al, 0x0A
     int 0x10
     mov si, buffer
     call get_user_input
@@ -105,7 +105,7 @@ get_user_input:
     jmp .read_key
 .handle_backspace:
     cmp byte [si], 0
-    je .read_key ; If empty, ignore backspace
+    je .read_key
     mov ah, 0x0E
     mov al, 0x08
     int 0x10
