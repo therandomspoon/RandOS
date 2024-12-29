@@ -37,7 +37,6 @@ start:
     mov ah, 0x0E
     mov al, 0x0A
     int 0x10
-    call clear_screen_with_delay
     mov ah, 0x0E
     mov al, 'K'
     int 0x10
@@ -74,16 +73,6 @@ display_input:
 hlt_loop:
     hlt
     jmp hlt_loop
-clear_screen_with_delay:
-    mov ah, 0x00
-    mov al, 0x03
-    int 0x10
-    mov ah, 0x02
-    xor bh, bh
-    xor dh, dh
-    xor dl, dl
-    int 0x10
-    ret
 get_user_input:
     mov byte [si], 0 
     mov ah, 0       
